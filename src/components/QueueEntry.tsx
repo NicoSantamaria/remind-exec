@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListData } from '../App';
+import { ListData } from '../utils/types';
 
 const QueueEntry: React.FC<ListData> = (list_data) => {
 	return (

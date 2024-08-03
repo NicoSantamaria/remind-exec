@@ -1,4 +1,4 @@
-import { ListItems } from '../App';
+import { ListItems } from './types';
 
 export const TEST_DATA: ListItems = {
 	list_name: "Testing Data",
@@ -7,7 +7,7 @@ export const TEST_DATA: ListItems = {
 		description: "How to do it",
 		location: "The first place",
 		due_date: new Date(),
-		time_estimate: { amount: 2, unit: 'hrs' },
+		time_estimate: { amount: 2, time_unit: 'hrs' },
 		attachments: null,
 		priority: 'Essential',
 		subtasks: [{
@@ -31,7 +31,7 @@ export const TEST_DATA: ListItems = {
 		description: "Another way to do it",
 		location: "The second place",
 		due_date: { start_time: new Date(), end_time: new Date() },
-		time_estimate: { amount: 30, unit: 'mins' },
+		time_estimate: { amount: 30, time_unit: 'mins' },
 		attachments: "Here's an attachment, for example",
 		priority: 'Optional',
 		subtasks: null,

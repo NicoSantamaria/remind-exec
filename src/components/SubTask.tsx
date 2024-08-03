@@ -1,5 +1,5 @@
 import React from 'react';
-import { Subtask } from '../App';
+import { Subtask } from '../utils/types';
 
 const SubTask: React.FC<Subtask> = (subtask) => {
 	return (
