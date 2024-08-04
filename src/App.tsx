@@ -19,6 +19,8 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		const fetchdata = async () => {
+			// actually want to do a joined call on public.lists
+			// and public.list_data
 			fetch(`http://localhost:3001/api/init/${TEST_USER_ID}`)
 				.then(res => res.json())
 				.then(res => {
@@ -33,24 +35,24 @@ const App: React.FC = () => {
 			setLoading(false);
 		}
 		fetchdata();
-	}, [loading]);
+	}, []);
 
 	return (
 		<main className="flex justify-between h-full w-full">
 			<div className="w-full border border-black rounded m-5">
 				<h1>{listItems?.list_name}</h1>
-				{/* {listItems?.list_data.map((item) => (
+				{listItems?.list_data.map((item) => (
 					<div className="">
 						<ListEntry {...item} />
 					</div>
-				))} */}
+				))}
 			</div>
 
 			<div className="w-full border border-black rounded m-5">
-				{/* <h1>{listItems?.list_name}</h1>
+				<h1>{listItems?.list_name}</h1>
 				{listItems?.list_data.map((item) => (
 					<QueueEntry {...item} />
-				))} */}
+				))}
 			</div>
 
 			<div className="w-full border border-black rounded m-5">

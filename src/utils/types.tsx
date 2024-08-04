@@ -23,12 +23,13 @@ export type Subtask = {
 };
 
 export type ListData = {
-	title: string,
+	parent_id: number
+    list_name: string,
 	description: string | null,
 	location: string | null,
-	due_date: Date | TimePeriod | null,
-	time_estimate: TimeEstimate | null,
-	attachments: any | null,
+	time_estimate: TimeEstimate,
+	attachments: string | null,
 	priority: Priority,
-	subtasks: Subtask[] | null,
+    single_date: Date | null,
+    time_period: TimePeriod | null,
 };
