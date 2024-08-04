@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		testConnection();
-	})
+	}, []);
 
 	useEffect(() => {
 		const fetchdata = async () => {

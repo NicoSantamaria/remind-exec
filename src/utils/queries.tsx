@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 export const testConnection = () => {
     const fetchData = () => {
         fetch('http://localhost:3001/api/check')
@@ -9,6 +7,5 @@ export const testConnection = () => {
                 console.error('Client: Something went wrong: ', error)
             });
     }
-    
     fetchData();
 };
