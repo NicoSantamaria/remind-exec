@@ -1,16 +1,21 @@
 import React from 'react';
 import { ListData } from '../utils/types';
-import SubTask from './SubTask'
 
-const ListEntry: React.FC<ListData> = (list_data) => {
+type ListEntryProps = {
+	user_id: number,
+	parent_id: number
+
+}
+
+const ListEntry: React.FC<ListEntryProps> = ({ user_id, parent_id }) => {
 	return (
-		<div className="mb-5">
-			<h1><b>{list_data.title}</b></h1>
-			<p><i>{list_data.description}</i></p>
-			<p><i>{list_data.time_estimate?.amount} {list_data.time_estimate?.time_unit}</i></p>
-			{list_data.subtasks?.map((task) => (
-				<SubTask {...task} />
-			))}
+		<div>
+			<p>
+				{user_id}
+			</p>
+			<p>
+				{parent_id}
+			</p>
 		</div>
 	);
 };
