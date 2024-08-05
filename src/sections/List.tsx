@@ -4,23 +4,18 @@ import ListEntry from '../components/ListEntry';
 
 type ListProps = {
     user_id: number,
-    list_data: ListData
+    list_data: ListData[]
 }
 
-const List: React.FC<ListProps> = ({ user_id }) => {
-    const [listItems, setListItems] = useState<ListItems | null>(null);
+const List: React.FC<ListProps> = ({ user_id, list_data }) => {
+    const [listData, setListData] = useState<ListData[]>(list_data);
     const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		const fetchdata = async () => {
-			fetch(`http://localhost:3001/api/init/${TEST_USER_ID}`)
+			fetch(`http://localhost:3001/api/init/${user_id}`)
 				.then(res => res.json())
-				.then(res => {
-					setListItems({
-						list_name: "This is a test",
-						list_data: Object.values(res)
-					})
-				})
+				.then(res => { setListData({ ...Object.values(res) })})
 				.catch(error => {
 					console.error('Client: ERROR! ', error)
 				});
@@ -32,9 +27,9 @@ const List: React.FC<ListProps> = ({ user_id }) => {
     return (loading 
         ? <p>Loading...</p>
         : <div>
-            {listItems?.list_data.map((item) => (
+            {/* {listItems?.list_data.map((item) => (
                 <ListEntry {...item} />
-            ))}
+            ))} */}
         </div>
     )
 }
