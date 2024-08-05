@@ -10,7 +10,7 @@ const TEST_USER_ID: number = 1;
 
 const App: React.FC = () => {
 	const [lists, setLists] = useState<ListItems[] | null>(null);
-	const [userId, setuserId] = useState<number>(TEST_USER_ID);
+	const [userId, setUserId] = useState<number>(TEST_USER_ID);
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		const getLists = async () => {
-			// fetch and set setLists bu user_id
+			// fetch and set setLists by user_id
 			setLoading(false);
 		}
 		getLists();
@@ -30,7 +30,7 @@ const App: React.FC = () => {
 		: <main className="flex justify-between h-full w-full">
 
 			<section className="w-full border border-black rounded m-5">
-				{lists?.map((item) => (
+				{lists?.map((item: ListItems) => (
 					<div>
 						<h1>{item.list_name}</h1>
 						<List user_id={userId} />

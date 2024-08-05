@@ -15,7 +15,7 @@ export type ListItems = {
     list_data: ListData[],
 };
 
-export type task = {
+export type Task = {
 	title: string,
 	description: string | null,
 	completed: boolean,

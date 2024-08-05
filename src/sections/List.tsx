@@ -15,10 +15,9 @@ const List: React.FC<ListProps> = ({ user_id }) => {
 		const fetchdata = async () => {
 			fetch(`http://localhost:3001/api/init/${user_id}`)
 				.then(res => res.json())
-				.then(res => { setListData({ ...Object.values(res) })})
-				.catch(error => {
-					console.error('Client: ERROR! ', error)
-				});
+				.then(res => { setListData({...Object.values(res)})})
+				.catch(error => { console.error('Client: ERROR! ', error) });
+
 			setLoading(false);
 		}
 		fetchdata();
@@ -27,14 +26,16 @@ const List: React.FC<ListProps> = ({ user_id }) => {
     return (loading 
         ? <Loading />
         : <div>
-            {listData?.map((item) => (
+            {listData?.map((item: ListData) => (
                 <div>
-                    {/* Actually put all the list data here
-                    ...
-                    Then call the task children */}
+                    <h1>{item.list_name}</h1>
+                    <p>{item.description}</p>
+                    <p>{item.priority}</p>
+                    {/* And so on... */}
                     <ListEntry
                         user_id={user_id}
-                        parent_id={item.id}  
+                        parent_id={item.id}
+                        first_layer={true}
                     />                 
                 </div>
             ))}
