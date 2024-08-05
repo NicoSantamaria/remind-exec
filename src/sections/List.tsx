@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ListData } from '../utils/types';
+import Loading from '../utils/Loading';
 import ListEntry from '../components/ListEntry';
 
 type ListProps = {
@@ -24,7 +25,7 @@ const List: React.FC<ListProps> = ({ user_id }) => {
 	}, [loading]);
 
     return (loading 
-        ? <p>Loading...</p>
+        ? <Loading />
         : <div>
             {listData?.map((item) => (
                 <div>
