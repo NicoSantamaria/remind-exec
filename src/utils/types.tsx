@@ -15,15 +15,14 @@ export type ListItems = {
     list_data: ListData[],
 };
 
-export type Subtask = {
+export type task = {
 	title: string,
 	description: string | null,
 	completed: boolean,
-	children: Subtask[] | null,
 };
 
 export type ListData = {
-	parent_id: number
+	id: number,
     list_name: string,
 	description: string | null,
 	location: string | null,

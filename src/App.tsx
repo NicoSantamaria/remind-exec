@@ -32,10 +32,7 @@ const App: React.FC = () => {
 				{lists?.map((item) => (
 					<div>
 						<h1>{item.list_name}</h1>
-						<List 
-							user_id={userId} 
-							list_data={item.list_data}
-						/>
+						<List user_id={userId} />
 					</div>
 				))}
 			</section>

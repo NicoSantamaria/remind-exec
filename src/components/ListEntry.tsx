@@ -1,13 +1,13 @@
 import React from 'react';
-import { ListData } from '../utils/types';
+import { task } from '../utils/types';
 
 type ListEntryProps = {
 	user_id: number,
-	parent_id: number
-
+	parent_id: number,
 }
 
 const ListEntry: React.FC<ListEntryProps> = ({ user_id, parent_id }) => {
+
 	return (
 		<div>
 			<p>

@@ -4,11 +4,10 @@ import ListEntry from '../components/ListEntry';
 
 type ListProps = {
     user_id: number,
-    list_data: ListData[]
 }
 
-const List: React.FC<ListProps> = ({ user_id, list_data }) => {
-    const [listData, setListData] = useState<ListData[]>(list_data);
+const List: React.FC<ListProps> = ({ user_id }) => {
+    const [listData, setListData] = useState<ListData[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
@@ -27,9 +26,17 @@ const List: React.FC<ListProps> = ({ user_id, list_data }) => {
     return (loading 
         ? <p>Loading...</p>
         : <div>
-            {/* {listItems?.list_data.map((item) => (
-                <ListEntry {...item} />
-            ))} */}
+            {listData?.map((item) => (
+                <div>
+                    {/* Actually put all the list data here
+                    ...
+                    Then call the task children */}
+                    <ListEntry
+                        user_id={user_id}
+                        parent_id={item.id}  
+                    />                 
+                </div>
+            ))}
         </div>
     )
 }
