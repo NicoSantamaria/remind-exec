@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ListData } from '../utils/types';
 import Loading from '../utils/Loading';
-import Task from '../components/ListEntry';
+import Task from '../components/Task';
 
 export type ListProps = {
     user_id: number,

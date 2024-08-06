@@ -44,3 +44,5 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
         </div>
     )
 }
+
+export default Task;
