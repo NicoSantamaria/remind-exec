@@ -1,16 +1,16 @@
 import React from 'react';
-import { Subtask } from '../utils/types';
+import { Task } from '../utils/types';
 
-const SubTask: React.FC<Subtask> = (subtask) => {
+const SubTask: React.FC<Task> = (subtask) => {
 	return (
 		<div className="ml-4">
-			<p>{subtask.title}</p>
+			{/* <p>{subtask.title}</p>
 			<p><i>{subtask.description}</i></p>
 			<p>
 				{subtask.children?.map((task) => (
 					<SubTask {...task} />
 				))}
-			</p>
+			</p> */}
 		</div>
 	);
 };

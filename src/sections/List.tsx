@@ -3,17 +3,20 @@ import { ListData } from '../utils/types';
 import Loading from '../utils/Loading';
 import ListEntry from '../components/ListEntry';
 
-type ListProps = {
+export type ListProps = {
     user_id: number,
+    parent_id: number,
 }
 
-const List: React.FC<ListProps> = ({ user_id }) => {
+const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
     const [listData, setListData] = useState<ListData[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-	useEffect(() => {
+    useEffect(() => {
+        alert('running');
 		const fetchdata = async () => {
-			fetch(`http://localhost:3001/api/init/${user_id}`)
+            // update to search from user_id and parent_id
+			fetch(`http://localhost:3001/api/list_data/${user_id}`)
 				.then(res => res.json())
 				.then(res => { setListData({...Object.values(res)})})
 				.catch(error => { console.error('Client: ERROR! ', error) });
@@ -21,7 +24,7 @@ const List: React.FC<ListProps> = ({ user_id }) => {
 			setLoading(false);
 		}
 		fetchdata();
-	}, [loading]);
+	}, []);
 
     return (loading 
         ? <Loading />

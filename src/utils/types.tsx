@@ -11,6 +11,7 @@ type TimePeriod = {
 };
 
 export type ListItems = { 
+    id: number,
     list_name: string, 
     list_data: ListData[],
 };
