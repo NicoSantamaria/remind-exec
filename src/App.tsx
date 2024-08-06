@@ -27,7 +27,7 @@ const App: React.FC = () => {
 			fetch(`http://localhost:3001/api/lists/${TEST_USER_ID}`)
 				.then(res => res.json())
 				.then(res => {setLists(res)})
-				.catch(error => console.error(error));
+				.catch(error => console.error('Client Error: ', error));
 
 			setLoading(false);
 		}
@@ -42,10 +42,10 @@ const App: React.FC = () => {
 				{lists?.map((item: List) => (
 					<div>
 						<h1>{item.list_name}</h1>
-						{/* <List
+						<List
 							user_id={item.user_id}
 							parent_id={item.id}
-						/> */}
+						/>
 					</div>
 				))}
 			</section>

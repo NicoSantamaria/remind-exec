@@ -13,17 +13,15 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        alert('running');
-		const fetchdata = async () => {
-            // update to search from user_id and parent_id
-			fetch(`http://localhost:3001/api/list_data/${user_id}`)
-				.then(res => res.json())
-				.then(res => { setListData({...Object.values(res)})})
-				.catch(error => { console.error('Client: ERROR! ', error) });
+        const fetchData = async () => {
+            fetch(`http://localhost:3001/api/list_data/${user_id}/${parent_id}`)
+                .then(res => res.json())
+                .then(res => {setListData(res)})
+                .catch(error => console.error('Client Error: ', error));
 
 			setLoading(false);
-		}
-		fetchdata();
+		};
+		fetchData();
 	}, []);
 
     return (loading 
@@ -31,10 +29,9 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
         : <div>
             {listData?.map((item: ListData) => (
                 <div>
-                    <h1>{item.list_name}</h1>
+                    <h1>{item.title}</h1>
                     <p>{item.description}</p>
                     <p>{item.priority}</p>
-                    {/* And so on... */}
                     <ListEntry
                         user_id={user_id}
                         parent_id={item.id}
