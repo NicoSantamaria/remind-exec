@@ -37,7 +37,6 @@ const App: React.FC = () => {
 	return ( loading 
 		? <Loading />
 		: <main className="flex justify-between h-full w-full">
-
 			<section className="w-full border border-black rounded m-5">
 				{lists?.map((item: ListType) => (
 					<div>
@@ -57,7 +56,6 @@ const App: React.FC = () => {
 			<section className="w-full border border-black rounded m-5">
 				Calendar
 			</section>
-			
 		</main>
 	);
 }
