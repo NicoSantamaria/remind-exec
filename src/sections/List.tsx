@@ -26,7 +26,7 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
 
     return (loading 
         ? <Loading />
-        : <div>
+        : <div className="border border-black m-2 p-2">
             {listData?.map((item: ListData) => (
                 <div>
                     <h1>{item.title}</h1>

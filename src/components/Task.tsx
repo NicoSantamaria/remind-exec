@@ -28,7 +28,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
         ? <Loading />
         : <div>
             {tasks?.map((item) => (
-                <div>
+                <div className="ml-4 mb-2 border-l border-black px-2">
                     <h1>{item.title}</h1>
                     <Task 
                         user_id={user_id}
