@@ -34,7 +34,7 @@ const App: React.FC = () => {
 		getLists();
 	}, [userId]);
 
-	return ( loading 
+	return (loading 
 		? <Loading />
 		: <main className="flex justify-between h-full w-full">
 			<section className="w-full border border-black rounded m-5">
