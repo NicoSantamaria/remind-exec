@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ListData } from '../utils/types';
 import Loading from '../utils/Loading';
-import ListEntry from '../components/ListEntry';
+import Task from '../components/ListEntry';
 
 export type ListProps = {
     user_id: number,
@@ -32,7 +32,7 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
                     <h1>{item.title}</h1>
                     <p>{item.description}</p>
                     <p>{item.priority}</p>
-                    <ListEntry
+                    <Task
                         user_id={user_id}
                         parent_id={item.id}
                         first_layer={true}
