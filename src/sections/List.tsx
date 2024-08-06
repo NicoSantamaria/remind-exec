@@ -22,7 +22,7 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
 			setLoading(false);
 		};
 		fetchData();
-	}, []);
+	}, [user_id, parent_id]);
 
     return (loading 
         ? <Loading />

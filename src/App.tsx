@@ -7,15 +7,15 @@ import List from './sections/List';
 
 const TEST_USER_ID: number = 1;
 
-type List = {
+type ListType = {
 	id: number,
 	user_id: number,
 	list_name: string,
 }
 
 const App: React.FC = () => {
-	const [lists, setLists] = useState<List[] | null>(null);
-	const [userId, setUserId] = useState<number>(TEST_USER_ID);
+	const [lists, setLists] = useState<ListType[] | null>(null);
+	const [userId] = useState<number>(TEST_USER_ID);
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		const getLists = async () => {
-			fetch(`http://localhost:3001/api/lists/${TEST_USER_ID}`)
+			fetch(`http://localhost:3001/api/lists/${userId}`)
 				.then(res => res.json())
 				.then(res => {setLists(res)})
 				.catch(error => console.error('Client Error: ', error));
@@ -32,14 +32,14 @@ const App: React.FC = () => {
 			setLoading(false);
 		}
 		getLists();
-	}, []);
+	}, [userId]);
 
 	return ( loading 
 		? <Loading />
 		: <main className="flex justify-between h-full w-full">
 
 			<section className="w-full border border-black rounded m-5">
-				{lists?.map((item: List) => (
+				{lists?.map((item: ListType) => (
 					<div>
 						<h1>{item.list_name}</h1>
 						<List

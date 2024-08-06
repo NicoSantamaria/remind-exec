@@ -14,11 +14,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            fetch(`http://localhost:3000/api/task/
-                /${user_id}
-                /${parent_id}
-                /${first_layer ? '1' : '0'}
-            `)
+            fetch(`http://localhost:3001/api/task/${user_id}/${parent_id}/${first_layer ? '1' : '0'}`)
                 .then(res => res.json())
                 .then(res => {setTasks(res)})
                 .catch(error => console.error('Client Error: ', error))
@@ -26,7 +22,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
             setLoading(false);
         }
         fetchData();
-    }, []);
+    }, [user_id, parent_id, first_layer]);
 
     return (loading
         ? <Loading />
