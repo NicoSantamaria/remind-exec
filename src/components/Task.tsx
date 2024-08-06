@@ -17,7 +17,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
             fetch(`http://localhost:3000/api/task/
                 /${user_id}
                 /${parent_id}
-                /${first_layer}
+                /${first_layer ? '1' : '0'}
             `)
                 .then(res => res.json())
                 .then(res => {setTasks(res)})
