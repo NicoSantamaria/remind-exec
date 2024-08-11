@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      listStyleImage: {
+        checked: 'url("./assets/checkbox_checked.svg")',
+        unchecked: 'url("./assets/checkbox_unchecked.svg")',
+      },
+    },
   },
   plugins: [],
 }

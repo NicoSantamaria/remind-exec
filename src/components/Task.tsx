@@ -27,16 +27,23 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     return (loading
         ? <Loading />
         : <div className="px-4">
-            {tasks?.map((item) => (
-                <div>
-                    <h1>O {item.title}</h1>
+            {tasks?.map((item) => {return (
+                <ul className={`${
+                    item.completed
+                        ? "list-image-checked" 
+                        : "list-image-unchecked"
+                }`}>
+                    <li>
+                        <h1>{item.title}</h1>
+                        <p>{item.description}</p>
+                    </li>
                     <Task 
                         user_id={user_id}
                         parent_id={item.id}
                         first_layer={false}    
                     />
-                </div>
-            ))}
+                </ul>
+            )})}
         </div>
     )
 }
