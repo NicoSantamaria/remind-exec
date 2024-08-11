@@ -16,6 +16,10 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
         const fetchData = async () => {
             fetch(`http://localhost:3001/api/task/${user_id}/${parent_id}/${first_layer ? '1' : '0'}`)
                 .then(res => res.json())
+                .then(res => res.map((task: TaskType) => ({
+                    ...task,
+                    completed: !Boolean(task.completed)
+                })))
                 .then(res => {setTasks(res)})
                 .catch(error => console.error('Client Error: ', error))
                 
@@ -27,7 +31,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     return (loading
         ? <Loading />
         : <div className="px-4">
-            {tasks?.map((item) => {return (
+            {tasks?.map((item) => (
                 <ul className={`${
                     item.completed
                         ? "list-image-checked" 
@@ -43,7 +47,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
                         first_layer={false}    
                     />
                 </ul>
-            )})}
+            ))}
         </div>
     )
 }
