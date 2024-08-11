@@ -26,10 +26,10 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
 
     return (loading
         ? <Loading />
-        : <div>
+        : <div className="px-4">
             {tasks?.map((item) => (
-                <div className="ml-4 mb-2 border-l border-black px-2">
-                    <h1>{item.title}</h1>
+                <div>
+                    <h1>O {item.title}</h1>
                     <Task 
                         user_id={user_id}
                         parent_id={item.id}
