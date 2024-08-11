@@ -34,13 +34,32 @@ const App: React.FC = () => {
 		getLists();
 	}, [userId]);
 
+	const addListData = async () => {
+        // add another list item
+    }
+
+    const editListData = async () => {
+        // edit current list information
+    }
+
+    const deleteList = async () => {
+        // delete the current list
+    }
+
 	return (loading 
 		? <Loading />
 		: <main className="flex justify-between h-full w-full">
-			<section className="w-full border border-black rounded m-5">
+			<section className="w-full border border-black rounded m-5 bg-sky-700 text-white">
 				{lists?.map((item: ListType) => (
-					<div>
-						<h1>{item.list_name}</h1>
+					<div className="p-2">
+						<div className="flex flex-row w-full justify-between">
+							<h1 className="font-bold text-lg self-center">{item.list_name}</h1>
+							<div className="self-center">
+								<button className="px-2" onClick={() => addListData()}>Add</button>
+								<button className="px-2" onClick={() => editListData()}>Edit</button>
+								<button className="px-2" onClick={() => deleteList()}>Delete</button>
+							</div>
+            			</div>
 						<List
 							user_id={item.user_id}
 							parent_id={item.id}
