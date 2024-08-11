@@ -26,12 +26,14 @@ const List: React.FC<ListProps> = ({ user_id, parent_id }) => {
 
     return (loading 
         ? <Loading />
-        : <div className="flex flex-col border border-black m-2 p-2">
+        : <div className="flex flex-col rounded bg-sky-600">
             {listData?.map((item: ListData) => (
-                <div>
-                    <h1>{item.title}</h1>
-                    <p>{item.description}</p>
-                    <p>{item.priority}</p>
+                <div className="flex flex-col p-2 hover:bg-sky-700">
+                    <div className="flex flex-row justify-between">
+                        <h1 className="text-md font-bold">{item.title}</h1>
+                        <p className="text-xs pr-2">{item.priority}</p>
+                    </div>
+                    <p className="text-xs italic pb-2">{item.description}</p>
                     <Task
                         user_id={user_id}
                         parent_id={item.id}
