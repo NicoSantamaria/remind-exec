@@ -38,8 +38,10 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
                         : "list-image-unchecked"
                 }`}>
                     <li>
-                        <h1>{item.title}</h1>
-                        <p>{item.description}</p>
+                        <div className="h-6 overflow-hidden hover:h-full hover:cursor-pointer">
+                            <h1>{item.title}</h1>
+                            <p className="text-sm italic">{item.description}</p>
+                        </div>
                     </li>
                     <Task 
                         user_id={user_id}
