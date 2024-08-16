@@ -13,18 +13,17 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     const [tasks, setTasks] = useState<TaskType[] | null>(null);
 
     useEffect(() => {
-        // update current data
+        const updateData = async () => {
+
+        }
+        updateData();
     }, [tasks]);
 
     useEffect(() => {
         const fetchData = async () => {
             fetch(`http://localhost:3001/api/task/${user_id}/${parent_id}/${first_layer ? '1' : '0'}`)
                 .then(res => res.json())
-                .then(res => res.map((task: TaskType) => ({
-                    ...task,
-                    completed: !Boolean(task.completed),
-                })))
-                .then(res => {setTasks(res)})
+                .then(res => {setTasks(res.map((task: TaskType) => ({...task})))})
                 .catch(error => console.error('Client Error: ', error))
                 
             setLoading(false);
