@@ -13,7 +13,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     const [tasks, setTasks] = useState<TaskType[] | null>(null);
 
     useEffect(() => {
-
+        // update current data
     }, [tasks]);
 
     useEffect(() => {
@@ -35,30 +35,45 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     const toggleShowDescription = (id: number) => {
         if (tasks) {
             setTasks(tasks.map((task: TaskType) => {
-                return task.id == id
+                return task.id === id
                     ? { ...task, show_description: task.show_description
                         ? !task.show_description
                         : true
                     }
                     : task;
             }));
-        }
-    }
+        };
+    };
+
+    const toggleCompleted = (id: number) => {
+        if (tasks) {
+            setTasks(tasks.map((task: TaskType) => {
+                return task.id === id
+                    ? { ...task, completed: !task.completed }
+                    : task;
+            }));
+        };
+    };
 
     return (loading
         ? <Loading />
         : <div className="pl-4 w-full">
             {tasks?.map((item) => (
-                <ul className={`w-full${
+                <ul className={`w-full ${
                     item.completed
                         ? "list-image-checked" 
                         : "list-image-unchecked"
                 }`}>
-                    <li className="w-full">
+                    <li className="w-full" onClick={() => toggleCompleted(item.id)}>
                         <div className="hover:cursor-pointer w-full">
                             <div className="flex flex-row justify-between w-full">
                                 <h1>{item.title}</h1>
-                                <button onClick={() => toggleShowDescription(item.id)}>Expand</button>
+                                <button onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleShowDescription(item.id);
+                                }}>
+                                    Expand
+                                </button>
                             </div>
                             {item.show_description
                                 ? <p className="text-sm italic">{item.description}</p>
