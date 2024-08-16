@@ -10,7 +10,11 @@ type TaskProps = {
 
 const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     const [loading, setLoading] = useState<boolean>(true);
-    const [tasks, setTasks] = useState<TaskType[] | null>(null)
+    const [tasks, setTasks] = useState<TaskType[] | null>(null);
+
+    useEffect(() => {
+
+    }, [tasks]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,7 +22,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
                 .then(res => res.json())
                 .then(res => res.map((task: TaskType) => ({
                     ...task,
-                    completed: !Boolean(task.completed)
+                    completed: !Boolean(task.completed),
                 })))
                 .then(res => {setTasks(res)})
                 .catch(error => console.error('Client Error: ', error))
@@ -28,19 +32,38 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
         fetchData();
     }, [user_id, parent_id, first_layer]);
 
+    const toggleShowDescription = (id: number) => {
+        if (tasks) {
+            setTasks(tasks.map((task: TaskType) => {
+                return task.id == id
+                    ? { ...task, show_description: task.show_description
+                        ? !task.show_description
+                        : true
+                    }
+                    : task;
+            }));
+        }
+    }
+
     return (loading
         ? <Loading />
-        : <div className="px-4">
+        : <div className="pl-4 w-full">
             {tasks?.map((item) => (
-                <ul className={`${
+                <ul className={`w-full${
                     item.completed
                         ? "list-image-checked" 
                         : "list-image-unchecked"
                 }`}>
-                    <li>
-                        <div className="h-6 overflow-hidden hover:h-full hover:cursor-pointer">
-                            <h1>{item.title}</h1>
-                            <p className="text-sm italic">{item.description}</p>
+                    <li className="w-full">
+                        <div className="hover:cursor-pointer w-full">
+                            <div className="flex flex-row justify-between w-full">
+                                <h1>{item.title}</h1>
+                                <button onClick={() => toggleShowDescription(item.id)}>Expand</button>
+                            </div>
+                            {item.show_description
+                                ? <p className="text-sm italic">{item.description}</p>
+                                : null
+                            }
                         </div>
                     </li>
                     <Task 

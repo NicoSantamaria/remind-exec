@@ -10,7 +10,8 @@ const TEST_USER_ID: number = 1;
 type ListType = {
 	id: number,
 	user_id: number,
-	list_name: string,
+	list_name: string
+	hovered: boolean,
 }
 
 const App: React.FC = () => {

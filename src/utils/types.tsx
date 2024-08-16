@@ -23,6 +23,7 @@ export type TaskType = {
 	title: string,
 	description: string | null,
 	completed: boolean,
+    show_description: boolean | null,
 };
 
 export type ListData = {
