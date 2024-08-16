@@ -13,13 +13,6 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
     const [tasks, setTasks] = useState<TaskType[] | null>(null);
 
     useEffect(() => {
-        const updateData = async () => {
-
-        }
-        updateData();
-    }, [tasks]);
-
-    useEffect(() => {
         const fetchData = async () => {
             fetch(`http://localhost:3001/api/task/${user_id}/${parent_id}/${first_layer ? '1' : '0'}`)
                 .then(res => res.json())
@@ -31,6 +24,10 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
         fetchData();
     }, [user_id, parent_id, first_layer]);
 
+    const updateData = async () => {
+        // sync
+    }
+
     const toggleShowDescription = (id: number) => {
         if (tasks) {
             setTasks(tasks.map((task: TaskType) => {
@@ -41,6 +38,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
                     }
                     : task;
             }));
+            updateData();
         };
     };
 
@@ -51,6 +49,7 @@ const Task: React.FC<TaskProps> = ({ user_id, parent_id, first_layer }) => {
                     ? { ...task, completed: !task.completed }
                     : task;
             }));
+            updateData();
         };
     };
 
